@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { FunctionComponent, useState, useEffect } from "react";
+import styled from "styled-components";
+import { Card } from "./components";
 
-function App() {
+const App: FunctionComponent = () => {
+  const [query, setQuery] = useState<string>("Buenos Aires");
+
+  useEffect(() => {
+    //getWeather()
+    //getForecast()
+  }, []);
+
+  const handleSubmit = () => {
+    //getWeather(query)
+    //getForecast(query)
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      {" "}
+      <Card />
+    </Wrapper>
   );
-}
+};
 
 export default App;
+
+const Wrapper = styled.div`
+  align-items: flex-start;
+  background: #000117;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  padding: 30px;
+  height: 100%;
+  @media (min-width: 600px) {
+    align-items: center;
+    height: 1040px;
+  }
+`;
