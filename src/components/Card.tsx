@@ -1,23 +1,28 @@
-import React, { FunctionComponent, useEffect } from "react";
+import React, { FunctionComponent } from "react";
 import styled from "styled-components";
-
+import { Weather } from "../hooks/useApi";
 import { Search } from "./";
 
 interface Props {
-  //props
+  setQuery: React.Dispatch<React.SetStateAction<string>>;
+  handleSubmit: () => void;
+  weather: Weather;
 }
 
-const Card: FunctionComponent<Props> = ({}) => {
+const Card: FunctionComponent<Props> = ({
+  setQuery,
+  handleSubmit,
+  weather,
+}) => {
+  /* 
+  useEffect(() => {
+    console.log("Weather", weather);
+  }, [weather]);
+ */
   return (
     <Wrapper>
-      <div>
-        {
-          //title
-          //temp
-          //etc
-        }
-      </div>
-      <Search />
+      <div>{}</div>
+      <Search setQuery={setQuery} handleSubmit={handleSubmit} />
     </Wrapper>
   );
 };

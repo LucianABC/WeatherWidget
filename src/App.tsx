@@ -1,24 +1,24 @@
 import React, { FunctionComponent, useState, useEffect } from "react";
 import styled from "styled-components";
+import { useApi } from "./hooks";
 import { Card } from "./components";
 
 const App: FunctionComponent = () => {
+  const { getWeather, weather } = useApi("Buenos Aires");
   const [query, setQuery] = useState<string>("Buenos Aires");
 
   useEffect(() => {
-    //getWeather()
-    //getForecast()
+    getWeather(query);
   }, []);
 
   const handleSubmit = () => {
-    //getWeather(query)
-    //getForecast(query)
+    getWeather(query);
   };
 
   return (
     <Wrapper>
       {" "}
-      <Card />
+      <Card setQuery={setQuery} handleSubmit={handleSubmit} weather={weather} />
     </Wrapper>
   );
 };
