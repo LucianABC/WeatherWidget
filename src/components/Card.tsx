@@ -1,12 +1,12 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components";
-import { Weather } from "../hooks/useApi";
+import { Info } from "../types";
 import { Search } from "./";
 
 interface Props {
   setQuery: React.Dispatch<React.SetStateAction<string>>;
   handleSubmit: () => void;
-  weather: Weather;
+  weather: Info;
 }
 
 const Card: FunctionComponent<Props> = ({
@@ -19,6 +19,7 @@ const Card: FunctionComponent<Props> = ({
     console.log("Weather", weather);
   }, [weather]);
  */
+
   return (
     <Wrapper>
       <div>{}</div>
