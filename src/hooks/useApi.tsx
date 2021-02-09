@@ -2,17 +2,24 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 
 export interface Weather {
+  date: Date;
+  icon: string;
+  description: string;
+  temp?: number;
+  humidity: number;
+  visibility?: number;
+}
+
+export interface Forecast extends Weather {
+  maxTemp: number;
+  minTemp: number;
+}
+export interface Info {
   city: string;
   countryCode: string;
   data: {
-    currentWeather: {
-      icon: string;
-      description: string;
-      temp: string;
-      humidity: string;
-      visibility: string;
-    };
-    forecast: [];
+    currentWeather: Weather;
+    forecast: Forecast[];
   };
 }
 
@@ -24,8 +31,8 @@ export interface Coord {
 type UseApi = (
   city: string
 ) => {
-  getWeather: (city: string) => void;
-  weather: Weather;
+  getFullWeather: (city: string) => void;
+  info: Info;
 };
 
 const apiBase: string = "http://api.openweathermap.org/data/2.5/";
@@ -37,24 +44,25 @@ const useApi: UseApi = (city) => {
     lat: -34.6132,
   });
 
-  const [weather, setWeather] = useState<Weather>({
+  const [info, setInfo] = useState<Info>({
     city: "",
     countryCode: "",
     data: {
       currentWeather: {
+        date: new Date(),
         icon: "",
         description: "",
-        temp: "",
-        humidity: "",
-        visibility: "",
+        temp: 0,
+        humidity: 0,
+        visibility: 0,
       },
       forecast: [],
     },
   });
 
   useEffect(() => {
-    console.log("Coord", coord);
-  }, [coord]);
+    console.log("info", info);
+  }, [info]);
 
   const getCurrentWeather = async (city: string) => {
     try {
@@ -62,14 +70,17 @@ const useApi: UseApi = (city) => {
         ` ${apiBase}weather?q=${city}&units=metric&APPID=${apiKey}`
       );
       const { data } = res;
+      console.log("Weather res", data);
+
       setCoord({ lon: data.coord.lon, lat: data.coord.lat });
-      setWeather({
-        ...weather,
+      setInfo({
+        ...info,
         city: data.name,
-        countryCode: data.country,
+        countryCode: data.sys.country,
         data: {
-          ...weather.data,
+          ...info.data,
           currentWeather: {
+            date: data.dt,
             icon: `http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`,
             description: data.weather[0].main,
             visibility: data.visibility,
@@ -83,25 +94,37 @@ const useApi: UseApi = (city) => {
     }
   };
 
-  const getWeather = async (city: string) => {
+  const getFullWeather = async (city: string) => {
     await getCurrentWeather(city);
     try {
       const res = await Axios.get(
         `${apiBase}onecall?lat=${coord.lat}&lon=${coord.lon}&exclude=hourly,minutely,alerts&units=metric&appid=${apiKey}`
       );
-      console.log("Weather res", res.data);
       const { data } = res;
-      setWeather({
-        ...weather,
-        data: { ...weather.data, forecast: data.daily },
+      console.log("Forecast res", data);
+
+      const forecast: Forecast[] = data.daily.map((day: any) => {
+        return {
+          date: day.dt,
+          icon: `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`,
+          description: day.weather.main,
+          minTemp: day.temp.min,
+          maxTemp: day.temp.max,
+          humidity: day.humidity,
+        };
       });
-    } catch {}
+      setInfo({
+        ...info,
+        data: { ...info.data, forecast },
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return {
-    getWeather,
-
-    weather,
+    getFullWeather,
+    info,
   };
 };
 
