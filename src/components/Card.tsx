@@ -78,7 +78,7 @@ const Wrapper = styled.div`
   overflow: hidden;
   padding: 7px;
   text-align: center;
-  width: 100%;
+
   @media (min-width: 700px) {
     justify-content: space-between;
   }
@@ -88,9 +88,10 @@ const Header = styled.header`
   align-items: center;
   display: flex;
   flex-direction: column;
+  margin: 16px 0;
   h1,
   h2 {
-    margin: 5px;
+    margin: 3px;
   }
 `;
 
@@ -101,7 +102,7 @@ const WeatherContainer = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   text-transform: capitalize;
-  margin: 7px 0;
+  margin: 15px 0;
   p {
     margin: 0;
   }

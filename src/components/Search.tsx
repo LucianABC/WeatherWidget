@@ -12,12 +12,20 @@ const Search: FunctionComponent<Props> = ({ setQuery, handleSubmit }) => {
     setQuery(value);
   };
 
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { key } = e;
+    if (key === "Enter") {
+      handleSubmit();
+    }
+  };
+
   return (
     <Wrapper>
       <Input
         type="text"
         onChange={handleChange}
         placeholder="Enter city..."
+        onKeyPress={handleEnter}
       ></Input>
       <Button onClick={handleSubmit}>Search</Button>
     </Wrapper>

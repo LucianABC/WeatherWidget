@@ -10,7 +10,7 @@ body {
 }
 @media (min-width: 700px) {
   body {
-    height: 100%;
+    min-height: 937px;
   }
 }
 
