@@ -18,7 +18,7 @@ const useApi: UseApi = (city) => {
     countryCode: "",
     data: {
       currentWeather: {
-        date: new Date(),
+        date: 0,
         icon: "",
         description: "",
         temp: 0,
@@ -43,11 +43,11 @@ const useApi: UseApi = (city) => {
         `${apiBase}onecall?lat=${resWeather.data.coord.lat}&lon=${resWeather.data.coord.lon}&exclude=hourly,minutely,alerts&units=metric&appid=${apiKey}`
       );
 
-      const forecast: Forecast[] = resForecast.data.daily.map((day: any) => {
+      let forecast: Forecast[] = resForecast.data.daily.map((day: any) => {
         return {
           date: day.dt,
           icon: `http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png`,
-          description: day.weather.main,
+          description: day.weather[0].description,
           minTemp: day.temp.min,
           maxTemp: day.temp.max,
           humidity: day.humidity,
@@ -63,12 +63,12 @@ const useApi: UseApi = (city) => {
           currentWeather: {
             date: resWeather.data.dt,
             icon: `http://openweathermap.org/img/wn/${resWeather.data.weather[0].icon}@2x.png`,
-            description: resWeather.data.weather[0].main,
+            description: resWeather.data.weather[0].description,
             visibility: resWeather.data.visibility,
             temp: resWeather.data.main.temp,
             humidity: resWeather.data.main.humidity,
           },
-          forecast,
+          forecast: forecast.slice(1, 6),
         },
       });
     } catch (err) {

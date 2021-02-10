@@ -1,5 +1,5 @@
 export interface Weather {
-  date: Date;
+  date: number;
   icon: string;
   description: string;
   temp?: number;
@@ -18,4 +18,11 @@ export interface Info {
     currentWeather: Weather;
     forecast: Forecast[];
   };
+}
+
+export interface FormattedDate {
+  day: string;
+  date: number;
+  month: string;
+  year: number;
 }

@@ -18,7 +18,7 @@ const App: FunctionComponent = () => {
   return (
     <Wrapper>
       {" "}
-      <Card setQuery={setQuery} handleSubmit={handleSubmit} weather={info} />
+      <Card setQuery={setQuery} handleSubmit={handleSubmit} info={info} />
     </Wrapper>
   );
 };
@@ -32,7 +32,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   padding: 30px;
-  height: 100%;
   @media (min-width: 600px) {
     align-items: center;
     height: 1040px;
