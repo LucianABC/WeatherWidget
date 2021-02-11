@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import Axios from "axios";
 import { Info, Forecast } from "../types";
 
-type UseApi = (
-  city: string
-) => {
+type UseApi = () => {
   getFullWeather: (city: string) => void;
   info: Info;
 };
@@ -12,7 +10,7 @@ type UseApi = (
 const apiBase: string = "http://api.openweathermap.org/data/2.5/";
 const apiKey: string = "b48617df7813edea2f5b810e639cd078";
 
-const useApi: UseApi = (city) => {
+const useApi: UseApi = () => {
   const [info, setInfo] = useState<Info>({
     city: "",
     countryCode: "",

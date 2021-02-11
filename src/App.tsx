@@ -4,7 +4,7 @@ import { useApi } from "./hooks";
 import { Card } from "./components";
 
 const App: FunctionComponent = () => {
-  const { getFullWeather, info } = useApi("Buenos Aires");
+  const { getFullWeather, info } = useApi();
   const [query, setQuery] = useState<string>("Buenos Aires");
 
   useEffect(() => {
