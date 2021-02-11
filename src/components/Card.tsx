@@ -4,13 +4,19 @@ import { Info, FormattedDate } from "../types";
 import { formatDate } from "../utils/date";
 import { Search } from "./";
 
-interface Props {
-  setQuery: React.Dispatch<React.SetStateAction<string>>;
+export interface Props {
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void;
   handleSubmit: () => void;
   info: Info;
 }
 
-const Card: FunctionComponent<Props> = ({ setQuery, handleSubmit, info }) => {
+const Card: FunctionComponent<Props> = ({
+  handleChange,
+  handleEnter,
+  handleSubmit,
+  info,
+}) => {
   const {
     city,
     countryCode,
@@ -24,7 +30,11 @@ const Card: FunctionComponent<Props> = ({ setQuery, handleSubmit, info }) => {
 
   return (
     <Wrapper>
-      <Search setQuery={setQuery} handleSubmit={handleSubmit} />
+      <Search
+        handleChange={handleChange}
+        handleEnter={handleEnter}
+        handleSubmit={handleSubmit}
+      />
       <Header>
         <h1>
           {city}, {countryCode}

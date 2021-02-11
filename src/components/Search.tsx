@@ -1,32 +1,26 @@
 import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 
-interface Props {
-  setQuery: (query: string) => void;
+export interface Props {
+  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleSubmit: () => void;
+  handleEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void;
 }
 
-const Search: FunctionComponent<Props> = ({ setQuery, handleSubmit }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target;
-    setQuery(value);
-  };
-
-  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    const { key } = e;
-    if (key === "Enter") {
-      handleSubmit();
-    }
-  };
-
+const Search: FunctionComponent<Props> = ({
+  handleChange,
+  handleEnter,
+  handleSubmit,
+}) => {
   return (
     <Wrapper>
       <Input
         type="text"
+        data-testid="input"
         onChange={handleChange}
         placeholder="Enter city..."
-        onKeyPress={handleEnter}
-      ></Input>
+        onKeyDown={handleEnter}
+      />
       <Button onClick={handleSubmit}>Search</Button>
     </Wrapper>
   );

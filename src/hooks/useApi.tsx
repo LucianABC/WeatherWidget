@@ -11,6 +11,7 @@ const apiBase: string = "http://api.openweathermap.org/data/2.5/";
 const apiKey: string = "b48617df7813edea2f5b810e639cd078";
 
 const useApi: UseApi = () => {
+  const [error, setError] = useState();
   const [info, setInfo] = useState<Info>({
     city: "",
     countryCode: "",
@@ -30,6 +31,10 @@ const useApi: UseApi = () => {
   useEffect(() => {
     console.log("info", info);
   }, [info]);
+
+  useEffect(() => {
+    error && alert("City not found");
+  }, [error]);
 
   const getFullWeather = async (city: string) => {
     try {
@@ -70,7 +75,7 @@ const useApi: UseApi = () => {
         },
       });
     } catch (err) {
-      console.log(err);
+      setError(err);
     }
   };
 

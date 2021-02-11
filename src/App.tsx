@@ -15,10 +15,27 @@ const App: FunctionComponent = () => {
     getFullWeather(query);
   };
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    setQuery(value);
+  };
+
+  const handleEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const { key } = e;
+    if (key === "Enter") {
+      handleSubmit();
+    }
+  };
+
   return (
     <Wrapper>
       {" "}
-      <Card setQuery={setQuery} handleSubmit={handleSubmit} info={info} />
+      <Card
+        handleEnter={handleEnter}
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        info={info}
+      />
     </Wrapper>
   );
 };
