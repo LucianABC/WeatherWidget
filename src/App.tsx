@@ -11,11 +11,13 @@ const App: FunctionComponent = () => {
     getFullWeather(query);
   }, []);
 
-  const handleSubmit = () => {
-    getFullWeather(query);
+  const handleSubmit = (value?: string) => {
+    value ? getFullWeather(value) : getFullWeather(query);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     const { value } = e.target;
     setQuery(value);
   };

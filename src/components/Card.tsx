@@ -2,12 +2,14 @@ import React, { FunctionComponent, useEffect, useState } from "react";
 import styled from "styled-components";
 import { Info, FormattedDate } from "../types";
 import { formatDate } from "../utils/date";
-import { Search } from "./";
+import { Search, Select } from "./";
 
 export interface Props {
-  handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
   handleEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-  handleSubmit: () => void;
+  handleSubmit: (value?: string) => void;
   info: Info;
 }
 
@@ -30,6 +32,7 @@ const Card: FunctionComponent<Props> = ({
 
   return (
     <Wrapper>
+      <Select handleChange={handleChange} handleSubmit={handleSubmit} />
       <Search
         handleChange={handleChange}
         handleEnter={handleEnter}
