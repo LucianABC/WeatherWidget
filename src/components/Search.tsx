@@ -13,7 +13,7 @@ const Search: FunctionComponent<Props> = ({
   handleSubmit,
 }) => {
   return (
-    <Wrapper>
+    <Wrapper data-testid="search">
       <Input
         type="text"
         data-testid="input"

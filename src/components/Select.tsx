@@ -2,7 +2,6 @@ import React, { FunctionComponent } from "react";
 import styled from "styled-components";
 
 export interface Props {
-  handleChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
   handleSubmit: (value?: string) => void;
 }
 const Select: FunctionComponent<Props> = ({ handleSubmit }) => {
@@ -12,15 +11,30 @@ const Select: FunctionComponent<Props> = ({ handleSubmit }) => {
   };
 
   return (
-    <SelectHTML name="select-city" onChange={handleSelect}>
-      <option hidden selected>
+    <SelectHTML
+      name="select-city"
+      data-testid="select"
+      defaultValue="placeholder"
+      onChange={handleSelect}
+    >
+      <option hidden value="placeholder">
         Most searched cities...
       </option>
-      <option value="buenos aires">Buenos Aires, AR</option>
-      <option value="new york">New York, US</option>
-      <option value="london">London, GB</option>
-      <option value="paris">Paris, FR</option>
-      <option value="sidney">Sidney, AU</option>
+      <option value="buenos aires" data-testid="option">
+        Buenos Aires, AR
+      </option>
+      <option value="new york" data-testid="option">
+        New York, US
+      </option>
+      <option value="london" data-testid="option">
+        London, GB
+      </option>
+      <option value="paris" data-testid="option">
+        Paris, FR
+      </option>
+      <option value="sidney" data-testid="option">
+        Sidney, AU
+      </option>
     </SelectHTML>
   );
 };

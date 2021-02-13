@@ -31,14 +31,14 @@ const Card: FunctionComponent<Props> = ({
   }, [currentWeather]);
 
   return (
-    <Wrapper>
-      <Select handleChange={handleChange} handleSubmit={handleSubmit} />
+    <Wrapper data-testid="card-wrapper">
+      <Select handleSubmit={handleSubmit} />
       <Search
         handleChange={handleChange}
         handleEnter={handleEnter}
         handleSubmit={handleSubmit}
       />
-      <Header>
+      <Header data-testid="card-header">
         <h1>
           {city}, {countryCode}
         </h1>
@@ -46,7 +46,7 @@ const Card: FunctionComponent<Props> = ({
           {currentDate?.month} {currentDate?.year}
         </h2>
       </Header>
-      <WeatherContainer>
+      <WeatherContainer data-testid="card-weather">
         <h4>
           {currentDate?.day} {currentDate?.date}
         </h4>
@@ -54,11 +54,11 @@ const Card: FunctionComponent<Props> = ({
         <h3>{currentWeather.description}</h3>
         <h2>{currentWeather.temp}°C</h2>
       </WeatherContainer>
-      <ForecastContainer>
+      <ForecastContainer data-testid="card-forecast">
         {forecast.map((day) => {
           const date = formatDate(day.date);
           return (
-            <WeatherContainer key={date.date}>
+            <WeatherContainer key={date.date} data-testid="forecast-item">
               <h4>
                 {" "}
                 {date.day} {date.date}
