@@ -28,9 +28,9 @@ const useApi: UseApi = () => {
     },
   });
 
-  /*   useEffect(() => {
+  useEffect(() => {
     error && alert("City not found");
-  }, [error]); */
+  }, [error]);
 
   const getFullWeather = async (city: string) => {
     try {

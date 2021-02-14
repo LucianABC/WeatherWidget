@@ -60,6 +60,7 @@ const Input = styled.input`
 `;
 
 const Button = styled.button`
+  cursor: pointer;
   border-radius: 0 8px 8px 0;
   width: 30%;
 `;

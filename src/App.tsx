@@ -11,8 +11,8 @@ const App: FunctionComponent = () => {
     getFullWeather(query);
   }, []);
 
-  const handleSubmit = (value?: string) => {
-    value ? getFullWeather(value) : getFullWeather(query);
+  const handleSubmit = (value?: any) => {
+    typeof value === "string" ? getFullWeather(value) : getFullWeather(query);
   };
 
   const handleChange = (

@@ -21,13 +21,12 @@ describe("Select test suite", () => {
     const options = screen.getAllByTestId("option");
     expect(options.length).toBe(5);
   });
-  /*   it("should call handleSubmit", () => {
+  it("should call handleSubmit", () => {
     const mockHandleSubmit = jest.fn();
     component(mockHandleSubmit);
-    const select = screen.getByTestId("select");
     const options = screen.getAllByTestId("option");
-    fireEvent.change(select, { target: { value: "london" } });
+    fireEvent.click(options[2]);
 
     expect(mockHandleSubmit).toBeCalled();
-  }); */
+  });
 });
