@@ -28,13 +28,9 @@ const useApi: UseApi = () => {
     },
   });
 
-  useEffect(() => {
-    console.log("info", info);
-  }, [info]);
-
-  useEffect(() => {
+  /*   useEffect(() => {
     error && alert("City not found");
-  }, [error]);
+  }, [error]); */
 
   const getFullWeather = async (city: string) => {
     try {
@@ -46,6 +42,7 @@ const useApi: UseApi = () => {
         `${apiBase}onecall?lat=${resWeather.data.coord.lat}&lon=${resWeather.data.coord.lon}&exclude=hourly,minutely,alerts&units=metric&appid=${apiKey}`
       );
 
+      console.log("responses", resWeather, resForecast);
       let forecast: Forecast[] = resForecast.data.daily.map((day: any) => {
         return {
           date: day.dt,
