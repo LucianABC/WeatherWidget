@@ -42,7 +42,6 @@ const useApi: UseApi = () => {
         `${apiBase}onecall?lat=${resWeather.data.coord.lat}&lon=${resWeather.data.coord.lon}&exclude=hourly,minutely,alerts&units=metric&appid=${apiKey}`
       );
 
-      console.log("responses", resWeather, resForecast);
       let forecast: Forecast[] = resForecast.data.daily.map((day: any) => {
         return {
           date: day.dt,

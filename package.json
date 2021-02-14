@@ -14,7 +14,6 @@
     "@types/styled-components": "^5.1.7",
     "axios": "^0.21.1",
     "axios-mock-adapter": "^1.19.0",
-    "fetch-mock": "^9.11.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.2",
